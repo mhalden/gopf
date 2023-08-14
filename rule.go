@@ -14,6 +14,10 @@ type RuleStats struct {
 	Evaluations         uint64
 	PacketIn, PacketOut uint64
 	BytesIn, BytesOut   uint64
+
+	MaxStates     uint32
+	StatesCurrent uint64
+	StatesTotal   uint64
 }
 
 // Stats copies the rule statistics into the passed
@@ -24,6 +28,10 @@ func (r Rule) Stats(stats *RuleStats) {
 	stats.PacketOut = uint64(r.wrap.rule.packets[1])
 	stats.BytesIn = uint64(r.wrap.rule.bytes[0])
 	stats.BytesOut = uint64(r.wrap.rule.bytes[1])
+
+	stats.MaxStates = uint32(r.wrap.rule.max_states)
+	stats.StatesCurrent = uint64(r.wrap.rule.states_cur)
+	stats.StatesTotal = uint64(r.wrap.rule.states_tot)
 }
 
 // SetProtocol sets the protocol matcher of the rule if the
