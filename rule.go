@@ -113,5 +113,5 @@ func (r Rule) AddressFamily() AddressFamily {
 }
 
 func (r Rule) Label() string {
-	return string(r.wrap.rule.label)
+	return C.GoString(r.wrap.rule.label)
 }
