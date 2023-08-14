@@ -111,3 +111,7 @@ func (r *Rule) SetAddressFamily(af AddressFamily) {
 func (r Rule) AddressFamily() AddressFamily {
 	return AddressFamily(r.wrap.rule.af)
 }
+
+func (r Rule) Label() string {
+	return string(r.wrap.rule.label)
+}
