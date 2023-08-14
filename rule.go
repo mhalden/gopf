@@ -2,6 +2,9 @@ package pf
 
 // #include <net/if.h>
 // #include <net/pfvar.h>
+// char *handle_str(char []str) {
+//     return str;
+// }
 import "C"
 
 // Rule wraps the pf rule (cgo)
@@ -30,8 +33,8 @@ func (r Rule) Stats(stats *RuleStats) {
 	stats.BytesOut = uint64(r.wrap.rule.bytes[1])
 
 	stats.MaxStates = uint32(r.wrap.rule.max_states)
-	stats.StatesCurrent = uint64(r.wrap.rule.states_cur)
-	stats.StatesTotal = uint64(r.wrap.rule.states_tot)
+	stats.StatesCurrent = uint64(*r.wrap.rule.states_cur)
+	stats.StatesTotal = uint64(*r.wrap.rule.states_tot)
 }
 
 // SetProtocol sets the protocol matcher of the rule if the
@@ -113,5 +116,5 @@ func (r Rule) AddressFamily() AddressFamily {
 }
 
 func (r Rule) Label() string {
-	return C.GoString(r.wrap.rule.label)
+	return C.GoString(C.handle_str(r.wrap.rule.label))
 }
