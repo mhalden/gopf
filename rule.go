@@ -2,10 +2,8 @@ package pf
 
 // #include <net/if.h>
 // #include <net/pfvar.h>
-// char *handle_str(char str[64]) {
-//     return str;
-// }
 import "C"
+import "unsafe"
 
 // Rule wraps the pf rule (cgo)
 type Rule struct {
@@ -116,5 +114,5 @@ func (r Rule) AddressFamily() AddressFamily {
 }
 
 func (r Rule) Label() string {
-	return C.GoString(&r.wrap.rule.label)
+	return C.GoString((*C.char)(unsafe.Pointer(&r.wrap.rule.label)))
 }
