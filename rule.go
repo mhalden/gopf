@@ -2,7 +2,7 @@ package pf
 
 // #include <net/if.h>
 // #include <net/pfvar.h>
-// char *handle_str(char []str) {
+// char *handle_str(char str[]) {
 //     return str;
 // }
 import "C"
