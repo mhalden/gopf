@@ -31,8 +31,13 @@ func (r Rule) Stats(stats *RuleStats) {
 	stats.BytesOut = uint64(r.wrap.rule.bytes[1])
 
 	stats.MaxStates = uint32(r.wrap.rule.max_states)
-	stats.StatesCurrent = uint64(*r.wrap.rule.states_cur)
-	stats.StatesTotal = uint64(*r.wrap.rule.states_tot)
+	if r.wrap.rule.states_cur != C.NULL {
+		stats.StatesCurrent = uint64(*r.wrap.rule.states_cur)
+	}
+	if r.wrap.rule.states_tot != C.NULL {
+		stats.StatesTotal = uint64(*r.wrap.rule.states_tot)
+
+	}
 }
 
 // SetProtocol sets the protocol matcher of the rule if the
