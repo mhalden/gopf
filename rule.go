@@ -31,10 +31,10 @@ func (r Rule) Stats(stats *RuleStats) {
 	stats.BytesOut = uint64(r.wrap.rule.bytes[1])
 
 	stats.MaxStates = uint32(r.wrap.rule.max_states)
-	if r.wrap.rule.states_cur != C.NULL {
+	if r.wrap.rule.states_cur != nil {
 		stats.StatesCurrent = uint64(*r.wrap.rule.states_cur)
 	}
-	if r.wrap.rule.states_tot != C.NULL {
+	if r.wrap.rule.states_tot != nil {
 		stats.StatesTotal = uint64(*r.wrap.rule.states_tot)
 
 	}
